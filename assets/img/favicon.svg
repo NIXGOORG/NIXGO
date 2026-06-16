@@ -1,0 +1,17 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NIXGO tech">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a4d92"/>
+      <stop offset="1" stop-color="#0c1d46"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fdf1bd"/>
+      <stop offset=".46" stop-color="#ecc24c"/>
+      <stop offset="1" stop-color="#a9781f"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#bg)"/>
+  <rect x="2.5" y="2.5" width="59" height="59" rx="13.5" fill="none" stroke="#7d9fe0" stroke-opacity="0.35"/>
+  <text x="32" y="33" fill="url(#gold)" font-family="'Arial Black', Arial, sans-serif" font-weight="900"
+        font-size="42" text-anchor="middle" dominant-baseline="central" letter-spacing="-2">N</text>
+</svg>
