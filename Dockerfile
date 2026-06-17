@@ -22,9 +22,9 @@ RUN chmod -R 755 /usr/share/nginx/html
 # Expose standard HTTP port
 EXPOSE 80
 
-# Production-ready healthcheck using wget (pre-installed in Alpine)
+# Production-ready healthcheck using wget (using 127.0.0.1 to avoid IPv6 resolution issues)
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
-  CMD wget --quiet --tries=1 --spider http://localhost/ || exit 1
+  CMD wget -qO- http://127.0.0.1/ >/dev/null || exit 1
 
 # Start Nginx in foreground
 CMD ["nginx", "-g", "daemon off;"]
