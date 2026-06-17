@@ -1,16 +1,31 @@
-# NIXGO tech — sitio estático servido con nginx
+# ==============================================================================
+# NIXGO tech - Optimized Dockerfile for VPS Production Deployment
+# ==============================================================================
+
 FROM nginx:1.27-alpine
 
-# Config de nginx (gzip, caché, headers de seguridad)
+# Set working directory
+WORKDIR /usr/share/nginx/html
+
+# Clean up default Nginx public files
+RUN rm -rf ./*
+
+# Copy Custom Nginx Configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Archivos del sitio (lo excluido va en .dockerignore)
-COPY . /usr/share/nginx/html/
+# Copy all site assets (respecting the exclusions defined in .dockerignore)
+COPY . ./
 
+# Set secure permissions: readable by all, writable only by root
+RUN chmod -R 755 /usr/share/nginx/html
+
+# Expose standard HTTP port
 EXPOSE 80
 
-# Healthcheck simple
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD wget -qO- http://localhost/ >/dev/null 2>&1 || exit 1
+# Production-ready healthcheck using wget (pre-installed in Alpine)
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+  CMD wget --quiet --tries=1 --spider http://localhost/ || exit 1
 
+# Start Nginx in foreground
 CMD ["nginx", "-g", "daemon off;"]
+
