@@ -5,4 +5,4 @@ services:
     container_name: nixgo-web
     restart: unless-stopped
     ports:
-      - "8080:80"   # http://IP-DE-LA-VPS:8080  (cámbialo a 80:80 si no usas reverse proxy)
+      - "8080:80"   # http://IP-DE-LA-VPS:8080  (cámbialo a 80:80 si no usas reverse proxy) 
